@@ -6,7 +6,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks unnecessary-violence");
+	system("leaks -q unnecessary-violence");
 }
 
 int main() {

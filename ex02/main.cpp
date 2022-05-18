@@ -3,7 +3,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks hi-this-is-brain");
+	system("leaks -q hi-this-is-brain");
 }
 
 int main() {

@@ -4,7 +4,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks moar-brainz");
+	system("leaks -q moar-brainz");
 }
 
 Zombie *zombieHorde(int n, std::string name);

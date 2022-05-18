@@ -4,7 +4,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks harl");
+	system("leaks -q harl");
 }
 
 int main() {

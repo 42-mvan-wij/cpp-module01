@@ -4,7 +4,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks harlFilter");
+	system("leaks -q harlFilter");
 }
 
 int main(int argc, char *argv[]) {
@@ -20,10 +20,13 @@ int main(int argc, char *argv[]) {
 		harl = new Harl();
 	}
 
-	harl->complain("DEBUG");
-	harl->complain("INFO");
-	harl->complain("WARNING");
-	harl->complain("ERROR");
+	// harl->complain("DEBUG");
+	// harl->complain("INFO");
+	// harl->complain("WARNING");
+	// harl->complain("WARNING");
+	// harl->complain("WARNING");
+	// harl->complain("WARNING");
+	// harl->complain("ERROR");
 	harl->complain("uhaehounsaehou");
 
 	delete harl;

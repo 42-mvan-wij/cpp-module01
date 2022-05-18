@@ -5,7 +5,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks sed-is-for-losers");
+	system("leaks -q sed-is-for-losers");
 }
 
 int main(int argc, char *argv[]) {
