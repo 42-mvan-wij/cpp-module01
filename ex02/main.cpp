@@ -1,12 +1,12 @@
 #include <iostream>
 
-__attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
 	system("leaks -q hi-this-is-brain");
 }
 
 int main() {
+	atexit(&check_leaks);
 	std::string msg("HI THIS IS BRAIN");
 	std::string *msg_ptr = &msg;
 	std::string &msg_ref = msg;

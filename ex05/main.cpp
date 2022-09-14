@@ -1,13 +1,13 @@
 #include <iostream>
 #include "Harl.hpp"
 
-__attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
 	system("leaks -q harl");
 }
 
 int main() {
+	atexit(&check_leaks);
 	Harl harl;
 
 	harl.complain("DEBUG");

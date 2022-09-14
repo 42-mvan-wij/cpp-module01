@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Zombie.hpp"
 
-__attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
 	system("leaks -q brainz");
@@ -10,6 +9,7 @@ void check_leaks() {
 Zombie *newZombie(std::string name);
 void randomChump(std::string name);
 int main() {
+	atexit(&check_leaks);
 	Zombie *alice = newZombie("Alice");
 	alice->announce();
 	delete alice;

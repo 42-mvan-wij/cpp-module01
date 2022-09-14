@@ -3,13 +3,13 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
-__attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
 	system("leaks -q unnecessary-violence");
 }
 
 int main() {
+	atexit(&check_leaks);
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);
