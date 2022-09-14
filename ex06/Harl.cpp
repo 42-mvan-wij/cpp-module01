@@ -9,7 +9,6 @@ const std::string Harl::levels[4] = {
 };
 
 Harl::Harl() {
-	filter_level = 0;
 	funcs[0] = &Harl::debug;
 	funcs[1] = &Harl::info;
 	funcs[2] = &Harl::warning;
@@ -17,18 +16,29 @@ Harl::Harl() {
 }
 
 Harl::Harl(std::string filter_level_str) {
-	filter_level = 5;
-	funcs[0] = &Harl::debug;
-	funcs[1] = &Harl::info;
-	funcs[2] = &Harl::warning;
-	funcs[3] = &Harl::error;
-	if (filter_level_str == "")
-		return ;
+	int filter_level = 0;
 	for (int i = 0; i < 4; i++) {
 		if (levels[i] == filter_level_str) {
 			filter_level = i;
 			break;
 		}
+	}
+
+	funcs[0] = &Harl::silent;
+	funcs[1] = &Harl::silent;
+	funcs[2] = &Harl::silent;
+	funcs[3] = &Harl::silent;
+	switch (filter_level) {
+		case 0:
+			funcs[0] = &Harl::debug;
+		case 1:
+			funcs[1] = &Harl::info;
+		case 2:
+			funcs[2] = &Harl::warning;
+		case 3:
+			funcs[3] = &Harl::error;
+		default:
+			break ;
 	}
 }
 
@@ -43,6 +53,9 @@ Harl &Harl::operator=(Harl const &rhs) {
 
 Harl::~Harl() {
 
+}
+
+void Harl::silent(void) {
 }
 
 void Harl::insignificant(void) {
@@ -66,11 +79,7 @@ void Harl::error(void) {
 }
 
 void Harl::complain(std::string level) {
-	if (filter_level > 4) {
-		insignificant();
-		return ;
-	}
-	for (int i = filter_level; i < 4; i++) {
+	for (int i = 0; i < 4; i++) {
 		if (levels[i] == level) {
 			(this->*funcs[i])();
 		}

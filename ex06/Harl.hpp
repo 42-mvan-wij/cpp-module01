@@ -1,3 +1,4 @@
+#pragma once
 #ifndef HARL_HPP
 # define HARL_HPP
 
@@ -15,10 +16,10 @@ class Harl {
 		void complain(std::string level);
 
 	private:
-		int filter_level;
 		typedef void (Harl::*complain_fn)();
-		complain_fn funcs[4];
+		complain_fn funcs[5];
 		static const std::string levels[4];
+		void silent(void);
 		void insignificant(void);
 		void debug(void);
 		void info(void);
