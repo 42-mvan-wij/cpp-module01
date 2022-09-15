@@ -6,7 +6,7 @@
 #    By: mvan-wij <mvan-wij@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/27 13:16:39 by mvan-wij      #+#    #+#                  #
-#    Updated: 2022/09/14 12:19:10 by mvan-wij      ########   odam.nl          #
+#    Updated: 2022/09/15 12:52:38 by mvan-wij      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ NAME_BONUS	:= harlFilter
 LIBFT		:=
 MINILIBX	:=
 
-CC			:= clang++
+CC			:= c++
 CFLAGS		+= -Wall -Wextra -Werror -std=c++98 $(if $(DEBUG), -g3) $(if $(SANITIZE), -fsanitize=address -g3)
 
 ################################################################################
