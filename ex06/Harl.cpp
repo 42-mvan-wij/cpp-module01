@@ -43,7 +43,7 @@ Harl::Harl(std::string filter_level_str) {
 }
 
 Harl::Harl(const Harl &src) {
-	*this = src;
+	(void)src;
 }
 
 Harl &Harl::operator=(Harl const &rhs) {

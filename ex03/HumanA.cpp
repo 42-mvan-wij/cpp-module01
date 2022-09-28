@@ -1,17 +1,18 @@
 #include <iostream>
 #include "HumanA.hpp"
 
+HumanA::HumanA() {}
+
 HumanA::HumanA(std::string name, Weapon &weapon) {
 	this->name = name;
 	this->weapon = &weapon;
 }
 
-HumanA::HumanA(const HumanA &src) {
-	*this = src;
-}
+HumanA::HumanA(const HumanA &src) : weapon(src.weapon), name(src.name) {}
 
 HumanA &HumanA::operator=(HumanA const &rhs) {
 	this->weapon = rhs.weapon;
+	this->name = rhs.name;
 	return *this;
 }
 

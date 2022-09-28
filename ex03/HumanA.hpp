@@ -15,6 +15,7 @@ class HumanA {
 		void	attack(void);
 
 	private:
+		HumanA();
 		Weapon *weapon;
 		std::string name;
 

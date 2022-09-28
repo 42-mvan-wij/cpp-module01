@@ -16,7 +16,7 @@ Harl::Harl() {
 }
 
 Harl::Harl(const Harl &src) {
-	*this = src;
+	(void)src;
 }
 
 Harl &Harl::operator=(Harl const &rhs) {
