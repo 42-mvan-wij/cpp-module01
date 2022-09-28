@@ -28,6 +28,10 @@ NAME		:= harlFilter
 CC			:= c++
 CFLAGS		+= -Wall -Wextra -Werror -std=c++98 -pedantic $(if $(DEBUG), -g3) $(if $(SANITIZE), -fsanitize=address -g3)
 
+ifeq ($(shell uname), Linux)
+	CFLAGS	+= -Wno-implicit-fallthrough
+endif
+
 ################################################################################
 
 HEADERS := $(wildcard *.h *.hpp)

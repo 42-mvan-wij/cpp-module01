@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 
 void check_leaks() {
 	std::cout << std::endl;
@@ -14,6 +15,8 @@ int main() {
 	std::cout << &msg << std::endl;
 	std::cout << msg_ptr << std::endl;
 	std::cout << &msg_ref << std::endl;
+
+	std::cout << std::endl;
 
 	std::cout << msg << std::endl;
 	std::cout << *msg_ptr << std::endl;

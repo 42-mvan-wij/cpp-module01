@@ -1,13 +1,15 @@
 #include <iostream>
+#include <cstdlib>
 #include "Zombie.hpp"
+
+Zombie *newZombie(std::string name);
+void randomChump(std::string name);
 
 void check_leaks() {
 	std::cout << std::endl;
 	system("leaks -q brainz");
 }
 
-Zombie *newZombie(std::string name);
-void randomChump(std::string name);
 int main() {
 	atexit(&check_leaks);
 	Zombie *alice = newZombie("Alice");

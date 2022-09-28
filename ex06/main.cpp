@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "Harl.hpp"
 
 void check_leaks() {
