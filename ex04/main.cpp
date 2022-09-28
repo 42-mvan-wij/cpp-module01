@@ -30,20 +30,20 @@ int main(int argc, char *argv[]) {
 	}
 
 	std::stringstream ss;
-	ss << in_file.rdbuf();
-	std::string s = ss.str();
-	in_file.close();
+	ss << infile.rdbuf();
+	infile.close();
+	std::string infile_text = ss.str();
 
 	std::size_t pos = 0;
 	std::size_t start = 0;
 
-	while ((pos = s.find(old_text, start)) != std::string::npos) {
-		out_file << s.substr(start, pos - start) << new_text;
+	while ((pos = infile_text.find(old_text, start)) != std::string::npos) {
+		outfile << infile_text.substr(start, pos - start) << new_text;
 		start = pos + old_text.length();
 	}
-	out_file << s.substr(start);
+	outfile << infile_text.substr(start);
 
-	out_file.close();
+	outfile.close();
 
 	return (EXIT_SUCCESS);
 }
