@@ -1,8 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Zombie.hpp"
-
-Zombie *zombieHorde(int n, std::string name);
+#include "zombieHorde.hpp"
 
 void check_leaks() {
 	std::cout << std::endl;
@@ -20,7 +19,13 @@ void	announceZombieHorde(int n, std::string name)
 int main() {
 	atexit(&check_leaks);
 
+	std::cout << "5 Alice zombies:" << std::endl;
 	announceZombieHorde(5, "Alice");
+	std::cout << std::endl;
+	std::cout << "10 Bob zombies:" << std::endl;
 	announceZombieHorde(10, "Bob");
+	std::cout << std::endl;
+	std::cout << "0 Carl zombies:" << std::endl;
+	announceZombieHorde(0, "Carl");
 	return (0);
 }
