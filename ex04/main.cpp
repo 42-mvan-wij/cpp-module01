@@ -24,13 +24,13 @@ int main(int argc, char *argv[]) {
 		return (EXIT_FAILURE);
 	}
 	std::ofstream outfile((std::string(argv[1]) + ".replace").c_str(), std::ios::trunc);
-	if (!outfile.fail()) {
-		std::cout << "Error: could not create/open file " << argv[1] << std::endl;
+	if (outfile.fail()) {
+		std::cout << "Error: could not create/open file " << argv[1] << ".replace" << std::endl;
 		return (EXIT_FAILURE);
 	}
 
 	std::stringstream ss;
-	ss << infile.rdbuf();
+	ss << infile;
 	infile.close();
 	std::string infile_text = ss.str();
 
@@ -42,8 +42,6 @@ int main(int argc, char *argv[]) {
 		start = pos + old_text.length();
 	}
 	outfile << infile_text.substr(start);
-
-	outfile.close();
 
 	return (EXIT_SUCCESS);
 }
