@@ -7,18 +7,14 @@
 class HumanB {
 	public:
 		HumanB(std::string name);
-		HumanB(HumanB const &src);
 		~HumanB();
 
-		HumanB &operator=(HumanB const &rhs);
-
 		void	setWeapon(Weapon &weapon);
-		void	attack(void);
+		void	attack(void) const;
 
 	private:
-		HumanB();
-		Weapon *weapon;
 		std::string name;
+		Weapon *weapon;
 };
 
 #endif
