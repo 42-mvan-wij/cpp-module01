@@ -8,25 +8,16 @@ const std::string Harl::levels[4] = {
 	"ERROR"
 };
 
-Harl::Harl() {
-	funcs[0] = &Harl::debug;
-	funcs[1] = &Harl::info;
-	funcs[2] = &Harl::warning;
-	funcs[3] = &Harl::error;
-}
+const Harl::complain_fn Harl::funcs[4] = {
+	&Harl::debug,
+	&Harl::info,
+	&Harl::warning,
+	&Harl::error,
+};
 
-Harl::Harl(const Harl &src) {
-	(void)src;
-}
+Harl::Harl() {}
 
-Harl &Harl::operator=(Harl const &rhs) {
-	(void)rhs;
-	return *this;
-}
-
-Harl::~Harl() {
-
-}
+Harl::~Harl() {}
 
 void Harl::debug(void) {
 	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
