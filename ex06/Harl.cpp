@@ -8,80 +8,45 @@ const std::string Harl::levels[4] = {
 	"ERROR"
 };
 
-Harl::Harl() {
-	funcs[0] = &Harl::debug;
-	funcs[1] = &Harl::info;
-	funcs[2] = &Harl::warning;
-	funcs[3] = &Harl::error;
-}
+const Harl::complain_fn Harl::funcs[4] = {
+	&Harl::debug,
+	&Harl::info,
+	&Harl::warning,
+	&Harl::error,
+};
 
-Harl::Harl(std::string filter_level_str) {
-	int filter_level = 0;
-	for (int i = 0; i < 4; i++) {
-		if (levels[i] == filter_level_str) {
-			filter_level = i;
-			break;
-		}
-	}
+Harl::Harl() {}
 
-	funcs[0] = &Harl::silent;
-	funcs[1] = &Harl::silent;
-	funcs[2] = &Harl::silent;
-	funcs[3] = &Harl::silent;
-	switch (filter_level) {
-		case 0:
-			funcs[0] = &Harl::debug;
-		case 1:
-			funcs[1] = &Harl::info;
-		case 2:
-			funcs[2] = &Harl::warning;
-		case 3:
-			funcs[3] = &Harl::error;
-		default:
-			break ;
-	}
-}
-
-Harl::Harl(const Harl &src) {
-	(void)src;
-}
-
-Harl &Harl::operator=(Harl const &rhs) {
-	(void)rhs;
-	return *this;
-}
-
-Harl::~Harl() {
-
-}
-
-void Harl::silent(void) {
-}
-
-void Harl::insignificant(void) {
-	std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-}
+Harl::~Harl() {}
 
 void Harl::debug(void) {
-	std::cout << "[ DEBUG ]" << std::endl << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
+	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
 }
 
 void Harl::info(void) {
-	std::cout << "[ INFO ]" << std::endl << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
+	std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
 }
 
 void Harl::warning(void) {
-	std::cout << "[ WARNING ]" << std::endl << "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month." << std::endl;
+	std::cout << "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month." << std::endl;
 }
 
 void Harl::error(void) {
-	std::cout << "[ ERROR ]" << std::endl << "This is unacceptable! I want to speak to the manager now." << std::endl;
+	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
+}
+
+ssize_t Harl::get_level_index(std::string level) {
+	for (ssize_t i = 0; i < 4; i++) {
+		if (levels[i] == level) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 void Harl::complain(std::string level) {
-	for (int i = 0; i < 4; i++) {
-		if (levels[i] == level) {
-			(this->*funcs[i])();
-		}
+	ssize_t level_index = get_level_index(level);
+	if (level_index != -1) {
+		(this->*funcs[level_index])();
 	}
 }

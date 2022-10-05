@@ -4,37 +4,28 @@
 
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks -q harlFilter");
+	system("leaks -q harl");
 }
 
-int main(int argc, char *argv[]) {
+int main() {
 	atexit(&check_leaks);
-	Harl *harl;
-	if (argc == 2) {
-		std::string level(argv[1]);
-		if (level != "DEBUG" && level != "INFO" && level != "WARNING" && level != "ERROR") {
+	Harl harl;
+
+	ssize_t i = harl.get_level_index("DEBUG");
+	switch (i) {
+		case 0:
+			harl.complain("DEBUG");
+		case 1:
+			harl.complain("INFO");
+		case 2:
+			harl.complain("WARNING");
+		case 3:
+			harl.complain("ERROR");
+			break;
+		default:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-			return (0);
-		}
-		harl = new Harl(level);
-	}
-	else if (argc > 2) {
-		std::cout << "Usage: " << argv[0] << " [filter_level]" << std::endl;
-		return (EXIT_FAILURE);
-	}
-	else {
-		harl = new Harl();
+			break;
 	}
 
-	harl->complain("DEBUG");
-	harl->complain("INFO");
-	harl->complain("WARNING");
-	harl->complain("INFO");
-	harl->complain("ERROR");
-	harl->complain("DEBUG");
-	harl->complain("WARNING");
-	harl->complain("ERROR");
-
-	delete harl;
 	return (0);
 }
