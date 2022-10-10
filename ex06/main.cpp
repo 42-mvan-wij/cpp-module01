@@ -1,14 +1,7 @@
 #include <iostream>
-#include <cstdlib>
 #include "Harl.hpp"
 
-void check_leaks() {
-	std::cout << std::endl;
-	system("leaks -q harl");
-}
-
 int main() {
-	atexit(&check_leaks);
 	Harl harl;
 
 	ssize_t i = harl.get_level_index("DEBUG");

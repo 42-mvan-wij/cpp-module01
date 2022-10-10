@@ -12,6 +12,7 @@ void check_leaks() {
 
 int main() {
 	atexit(&check_leaks);
+
 	Zombie *alice = newZombie("Alice");
 	alice->announce();
 	delete alice;

@@ -11,6 +11,7 @@ void check_leaks() {
 
 int main() {
 	atexit(&check_leaks);
+
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);

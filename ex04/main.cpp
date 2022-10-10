@@ -2,16 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <cstring>
-// #include <cstdlib>
-
-// void check_leaks() {
-// 	std::cout << std::endl;
-// 	system("leaks -q sed-is-for-losers");
-// }
 
 int main(int argc, char *argv[]) {
-	// atexit(&check_leaks);
-
 	if (argc != 4) {
 		std::cout << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
 		return (EXIT_FAILURE);
