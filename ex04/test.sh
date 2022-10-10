@@ -39,6 +39,9 @@ function test_sifl {
 }
 
 function run_tests {
+	EXPECT_ERROR=1
+	EXPECT_SUCCESS=0
+
 	touch empty_file
 	echo "Hello World" > hello_world
 	echo "Hello Hello HolleHello" > hello_world2
@@ -46,18 +49,18 @@ function run_tests {
 	chmod 000 file_wrong_permissions
 	touch test
 
-	test_sifl empty_file "" "test" 1
-	test_sifl nonexistant_file "Hello" "Hi" 1
-	test_sifl file_wrong_permissions "Hello" "Hi" 1
+	test_sifl empty_file "" "test" $EXPECT_ERROR
+	test_sifl nonexistant_file "Hello" "Hi" $EXPECT_ERROR
+	test_sifl file_wrong_permissions "Hello" "Hi" $EXPECT_ERROR
 
-	test_sifl test "Hello" "Hi" 0
-	test_sifl test "Hello" "Hi" 0
+	test_sifl test "Hello" "Hi" $EXPECT_SUCCESS
+	test_sifl test "Hello" "Hi" $EXPECT_SUCCESS
 	chmod 000 test.replace
-	test_sifl test "Hello" "Hi" 1
+	test_sifl test "Hello" "Hi" $EXPECT_ERROR
 
-	test_sifl empty_file "a" "test" 0
-	test_sifl hello_world "Hello" "Hi" 0
-	test_sifl hello_world2 "Hello" "Hi" 0
+	test_sifl empty_file "a" "test" $EXPECT_SUCCESS
+	test_sifl hello_world "Hello" "Hi" $EXPECT_SUCCESS
+	test_sifl hello_world2 "Hello" "Hi" $EXPECT_SUCCESS
 }
 
 INITIAL_DIR=$( pwd )
